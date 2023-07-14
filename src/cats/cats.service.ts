@@ -10,6 +10,11 @@ import { Cat, CatDocument } from './entities/cat.entity';
 export class CatsService {
   constructor(@InjectModel(db.DB_CAT) private catModel: Model<CatDocument>) {}
 
+  cats = [
+    { name: 'a', age: 12, id: 1 },
+    { name: 'b', age: 13, id: 2 },
+  ];
+
   create(createCatDto: CreateCatDto) {
     return this.catModel.create(createCatDto);
     return 'This action adds a new cat';
@@ -27,6 +32,9 @@ export class CatsService {
   async findOne(id: number): Promise<Cat> {
     // return `This action returns a #${id} cat`;
     return this.catModel.findOne({ _id: id }).exec();
+    (param: { _id: string }) => {
+      return this.cats.find((cat) => String(cat.id) === param._id);
+    };
   }
 
   update(id: number, updateCatDto: UpdateCatDto) {

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { UserRepository } from 'src/user/repositories/user.repository';
-import redis from 'src/util/redis';
+import { UserRepository } from '../../src/user/repositories/user.repository';
+import redis from '../../src/util/redis';
 import { UserNameBanDto } from './dto/UserNameBan.dto';
 
 @Injectable()

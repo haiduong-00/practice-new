@@ -46,15 +46,15 @@ export class BaseRepository<T extends Document> {
     return await this.model.populate(result, option);
   }
 
-  async deleteOne(id: string) {
-    return this.model.deleteOne({ _id: id } as FilterQuery<T>);
+  async deleteOne(id: string): Promise<unknown> {
+    return this.model.deleteOne({ _id: id } as FilterQuery<T>).exec();
   }
 
-  async deleteMany(id: string[]) {
+  async deleteMany(id: string[]): Promise<any> {
     return this.model.deleteMany({ _id: { $in: id } } as FilterQuery<T>);
   }
 
-  async deleteByCondition(filter) {
+  async deleteByCondition(filter): Promise<any> {
     return this.model.deleteMany(filter);
   }
 
@@ -62,7 +62,12 @@ export class BaseRepository<T extends Document> {
     return this.model.findOneAndUpdate(filter as FilterQuery<T>, update);
   }
 
-  async updateMany(filter, update, option?: any | null, callback?: any | null) {
+  async updateMany(
+    filter,
+    update,
+    option?: any | null,
+    callback?: any | null,
+  ): Promise<any> {
     return this.model.updateMany(filter, update, option, callback);
   }
 

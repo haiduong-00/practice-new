@@ -1,9 +1,9 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { Roles } from 'src/roles.decorator';
-import { RolesGuard } from 'src/roles.guard';
 import { UserNameBanDto } from './dto/UserNameBan.dto';
 import { UserManagerService } from './user-manager.service';
+import { RolesGuard } from '../roles.guard';
+import { Roles } from '../roles.decorator';
 
 @Controller('user-manager')
 export class UserManagerController {

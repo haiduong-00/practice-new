@@ -12,7 +12,6 @@ export class AuthService {
 
   async register(userDto: CreateUserDto) {
     const user = await this.userService.create(userDto);
-
     const token = this._createToken(user);
     return {
       email: user.email,
@@ -23,7 +22,6 @@ export class AuthService {
   async login(LoginUserDto: LoginUserDto) {
     const user = await this.userService.findByLogin(LoginUserDto);
     const token = this._createToken(user);
-
     return {
       email: user.email,
       ...token,
@@ -40,7 +38,6 @@ export class AuthService {
 
   private _createToken({ email }): any {
     const accessToken = this.jwtService.sign({ email });
-    // console.log('aaaaa');
     return {
       expiresIn: process.env.EXPIRES_IN,
       accessToken,

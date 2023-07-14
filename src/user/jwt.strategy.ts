@@ -6,9 +6,9 @@ import {
 } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import redis from 'src/util/redis';
 import { SECRET_KEY } from './config/secret';
 import { AuthService } from './services/auth.service';
+import redis from '../../src/util/redis';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {

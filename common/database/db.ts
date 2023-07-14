@@ -1,1 +1,1 @@
-export const DB_CAT = "Cat";
+export const DB_CAT = 'Cat';

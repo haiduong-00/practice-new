@@ -7,6 +7,7 @@ const UsersSchema = new Schema(
     fullname: String,
     dateOfBirth: String,
     gender: String,
+    email: String,
   },
 
   {
@@ -31,4 +32,5 @@ export interface Users extends Document {
   fullname: string;
   dateOfBirth: string;
   gender: string;
+  email: string;
 }

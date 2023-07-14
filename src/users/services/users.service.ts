@@ -2,7 +2,6 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 // import redis from 'src/util/redis';
 import { CreateUserDto, LoginUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
-import * as bcypt from 'bcrypt';
 import { UsersRepository } from '../repositories/users.repository';
 
 @Injectable()
@@ -41,15 +40,22 @@ export class UsersService {
     // const exist = await redis.exists('key');
   }
 
-  async findByLogin({ username, password }: LoginUserDto) {
+  async findByLogin({ email, password }: LoginUserDto) {
     const user = await this.userRepository.findOne({
-      username: username,
+      email: email,
     });
+    console.log(user);
 
     if (!user) {
       throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
     }
 
     return user;
+  }
+
+  async findByEmail(email) {
+    return this.userRepository.findByCondition({
+      email: email,
+    });
   }
 }
